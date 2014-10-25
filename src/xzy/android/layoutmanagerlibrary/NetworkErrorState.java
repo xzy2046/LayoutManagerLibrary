@@ -15,25 +15,23 @@
  */
 package xzy.android.layoutmanagerlibrary;
 
+import android.content.Context;
+import android.view.View;
+
 /**
  * @author zhengyangxu
  * @date Oct 25, 2014 5:10:51 PM
  * TODO TODO
  *
  */
-public class ErrorState implements LayoutState {
+public class NetworkErrorState extends LayoutState {
 
-    public ErrorState() {
-        // TODO Auto-generated constructor stub
+    public NetworkErrorState(Context context) {
+        super(context);
     }
-
-    /* (non-Javadoc)
-     * @see xzy.android.layoutmanagerlibrary.LayoutState#setLayoutShown(boolean, boolean)
-     */
-    @Override
-    public void setLayoutShown(boolean shown, boolean animate) {
-        // TODO Auto-generated method stub
-        
+    
+    public NetworkErrorState(Context context, View view) {
+        super(context, view);
     }
 
 }

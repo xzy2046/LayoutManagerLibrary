@@ -22,7 +22,8 @@ import android.view.animation.AnimationUtils;
 
 /**
  * @author zhengyangxu
- * @date Oct 25, 2014 5:08:43 PM TODO TODO
+ * @date Oct 25, 2014 5:08:43 PM 
+ * TODO
  */
 public class LayoutState {
 
@@ -30,6 +31,8 @@ public class LayoutState {
     private Context mContext;
     private int mEnterAnimation;
     private int mExitAnimation;
+    boolean mShown;
+    
 
     public LayoutState(Context context) {
         this(context, null);
@@ -50,12 +53,16 @@ public class LayoutState {
     public void setView(View view) {
         mContentLayout = view;
     }
+    
+    public View getView() {
+        return mContentLayout;
+    }
 
-    public void setLayoutShow(boolean shown) {
+    public void setLayoutShown(boolean shown) {
         setLayoutShown(shown, true);
     }
     
-    public void setLayoutWithAnimation(boolean shown) {
+    public void setLayoutShownNoAnimation(boolean shown) {
         setLayoutShown(shown, false);
     }
     
@@ -66,6 +73,7 @@ public class LayoutState {
      * @param animate 是否动画
      */
     public void setLayoutShown(boolean shown, boolean animate) {
+        mShown = shown;
         if (mContentLayout == null) {
             throw new IllegalStateException("Content layout not yet created");
         }
