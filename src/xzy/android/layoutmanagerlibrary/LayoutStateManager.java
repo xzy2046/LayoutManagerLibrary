@@ -13,40 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package xzy.android.layoutmanagerlibrary;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author zhengyangxu
- * @date Oct 25, 2014 5:10:51 PM TODO TODO
+ * @date Oct 26, 2014 4:17:42 PM
+ * 管理LayoutState,考虑onSaveInstance恢复状态。
+ *
  */
-public class NetworkErrorState extends LayoutState {
-
-    private CharSequence mPromptTitle;
-    private CharSequence mPromptSummary;
-
-    public NetworkErrorState(Context context) {
-        this(context, null);
-
+public abstract class LayoutStateManager implements LayoutStateHelper {
+    
+    private List<LayoutState> mLayoutStates;
+    
+    public LayoutStateManager() {
+        mLayoutStates = new ArrayList<LayoutState>();
     }
-
-    public NetworkErrorState(Context context, View view) {
-        super(context, view);
-        // default view
-        if (view == null) {
-            View contentView = LayoutInflater.from(context).inflate(R.layout.state_network_err,
-                    null);
-            this.setView(contentView);
-        }
+    
+    
+    
+    public void addLayoutState() {
+        
     }
-
-     public void setPrompt(CharSequence title, CharSequence summary) {
-         mPromptTitle = title;
-         mPromptSummary = summary;
-     }
-
 }

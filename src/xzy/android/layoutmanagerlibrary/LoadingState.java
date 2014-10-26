@@ -13,40 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package xzy.android.layoutmanagerlibrary;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 
 /**
  * @author zhengyangxu
- * @date Oct 25, 2014 5:10:51 PM TODO TODO
+ * @date Oct 26, 2014 4:15:25 PM
+ * TODO
+ *
  */
-public class NetworkErrorState extends LayoutState {
+public class LoadingState extends LayoutState {
 
-    private CharSequence mPromptTitle;
-    private CharSequence mPromptSummary;
-
-    public NetworkErrorState(Context context) {
-        this(context, null);
-
+    public LoadingState(Context context) {
+        super(context);
+        // TODO Auto-generated constructor stub
     }
 
-    public NetworkErrorState(Context context, View view) {
+    public LoadingState(Context context, View view) {
         super(context, view);
-        // default view
-        if (view == null) {
-            View contentView = LayoutInflater.from(context).inflate(R.layout.state_network_err,
-                    null);
-            this.setView(contentView);
-        }
+        // TODO Auto-generated constructor stub
     }
-
-     public void setPrompt(CharSequence title, CharSequence summary) {
-         mPromptTitle = title;
-         mPromptSummary = summary;
-     }
 
 }

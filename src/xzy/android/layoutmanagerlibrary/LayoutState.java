@@ -22,8 +22,7 @@ import android.view.animation.AnimationUtils;
 
 /**
  * @author zhengyangxu
- * @date Oct 25, 2014 5:08:43 PM 
- * TODO
+ * @date Oct 25, 2014 5:08:43 PM TODO
  */
 public class LayoutState {
 
@@ -32,7 +31,6 @@ public class LayoutState {
     private int mEnterAnimation;
     private int mExitAnimation;
     boolean mShown;
-    
 
     public LayoutState(Context context) {
         this(context, null);
@@ -53,7 +51,7 @@ public class LayoutState {
     public void setView(View view) {
         mContentLayout = view;
     }
-    
+
     public View getView() {
         return mContentLayout;
     }
@@ -61,11 +59,11 @@ public class LayoutState {
     public void setLayoutShown(boolean shown) {
         setLayoutShown(shown, true);
     }
-    
+
     public void setLayoutShownNoAnimation(boolean shown) {
         setLayoutShown(shown, false);
     }
-    
+
     /**
      * 切换状态
      * 

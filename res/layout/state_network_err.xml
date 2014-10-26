@@ -6,25 +6,27 @@
     android:orientation="vertical" >
 
     <ImageView
+        android:id="@+id/state_network_err_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/networkerror_content_hint"
         android:src="@drawable/ic_launcher" />
 
     <TextView
-        android:id="@+id/ltm_network_hint"
+        android:id="@+id/state_network_err_prompt_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="网络出错" />
+        android:text="@string/state_network_err_prompt_title" />
 
     <TextView
-        android:id="@+id/ltm_network_msg"
+        android:id="@+id/state_network_err_prompt_summary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="请检查网络后，刷新重试" />
+        android:text="@string/state_network_err_prompt_summary" />
 
     <Button
-        android:id="@+id/ltm_network_btn"
+        android:id="@+id/state_network_err_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -33,7 +35,7 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:paddingTop="8dp"
-        android:text="设置"
-        android:textSize="15dp" />
+        android:text="@string/state_network_err_btn_text"
+        android:textSize="@dimen/state_network_err_btn_txt_size" />
 
 </LinearLayout>
