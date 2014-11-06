@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="xzy.android.layoutmanagerlibrarydemo.MainActivity"
+  	>
+
+    <TextView
+        android:id="@+id/textview_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="fragment" />
+
+    <Button
+        android:id="@+id/show_empty_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/show_net_error"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="showEmptyData" />
+
+    <Button
+        android:id="@+id/show_net_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/show_loading"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="showNetError" />
+
+    <Button
+        android:id="@+id/show_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_fragment"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="148dp"
+        android:text="showLoading" />
+
+    <Button
+        android:id="@+id/start_fragment_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/show_empty_data"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="start FragmentActivity" />
+
+</RelativeLayout>
