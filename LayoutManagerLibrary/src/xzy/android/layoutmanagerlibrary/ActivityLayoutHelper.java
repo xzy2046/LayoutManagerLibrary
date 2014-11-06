@@ -29,7 +29,6 @@ public class ActivityLayoutHelper extends LayoutStateHelper {
 
     private ViewGroup mContentView;
 
-
     public ActivityLayoutHelper(Context context) {
         mContext = context;
         mContentView = (ViewGroup) LayoutInflater.from(mContext).inflate(
@@ -44,9 +43,9 @@ public class ActivityLayoutHelper extends LayoutStateHelper {
 
     @Override
     public View setContentView(int resID, ViewGroup parent, LayoutInflater inflater) {
-         View view = LayoutInflater.from(mContext).inflate(resID, null);
-         mContentView.addView(view);
-        
+        View view = LayoutInflater.from(mContext).inflate(resID, null);
+        mContentView.addView(view);
+
         updateLayoutState(createLayoutState(mContext, view, LayoutStateHelper.STATE_CONTENT_VIEW));
         showLayoutState(LayoutStateHelper.STATE_CONTENT_VIEW);
         return mContentView;
@@ -54,15 +53,6 @@ public class ActivityLayoutHelper extends LayoutStateHelper {
 
     @Override
     public View setContentView(View view, ViewGroup parent, LayoutInflater inflater) {
-        // mContentView.addView(view, new FrameLayout.L);
-        // mContentView.addView(new View(mContext), 200, 200);
-        // View child = new View(mContext);
-        // mContentView.addView(view, new ViewGroup.LayoutParams(
-        // ViewGroup.LayoutParams.MATCH_PARENT,
-        // ViewGroup.LayoutParams.MATCH_PARENT));
-//        removeLayoutState(ActivityLayoutHelper.STATE_CONTENT_VIEW);
-        
-        
         mContentView.addView(view);
         updateLayoutState(createLayoutState(mContext, view, LayoutStateHelper.STATE_CONTENT_VIEW));
         showLayoutState(LayoutStateHelper.STATE_CONTENT_VIEW);
@@ -81,10 +71,10 @@ public class ActivityLayoutHelper extends LayoutStateHelper {
             case STATE_EMPTY_DATA:
                 layoutState = new EmptyState(context, contentView, mContentView, stateID);
                 ((EmptyState) layoutState).setCallback(new EmptyState.Callbacks() {
-                    
+
                     @Override
                     public void onRefresh(View view) {
-                        if(mCallback != null) {
+                        if (mCallback != null) {
                             mCallback.onEmptyStateRefresh(view);
                         }
                     }

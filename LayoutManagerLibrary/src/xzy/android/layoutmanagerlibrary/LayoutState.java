@@ -25,7 +25,10 @@ import android.view.animation.AnimationUtils;
 
 /**
  * @author zhengyangxu
- * @date Oct 25, 2014 5:08:43 PM TODO
+ * @date Oct 25, 2014 5:08:43 PM 
+ * TODO 由于一个Activity可能会有多个Fragment,不同Fragment如果共享布局，其中的view id可能相同
+ * 在findViewById时会产生问题。
+ * 遇到这种情况时，view id的设置请参考：http://blog.csdn.net/xzy2046/article/details/40654283
  */
 public abstract class LayoutState {
 
