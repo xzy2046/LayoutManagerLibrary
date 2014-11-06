@@ -23,12 +23,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * @author zhengyangxu
- * @date Oct 25, 2014 5:08:43 PM 
- * TODO 由于一个Activity可能会有多个Fragment,不同Fragment如果共享布局，其中的view id可能相同
- * 在findViewById时会产生问题。
- * 遇到这种情况时，view id的设置请参考：http://blog.csdn.net/xzy2046/article/details/40654283
+ * @date Oct 25, 2014 5:08:43 PM TODO
+ *       由于一个Activity可能会有多个Fragment,不同Fragment如果共享布局，其中的view id可能相同
+ *       在findViewById时会产生问题。 遇到这种情况时，view
+ *       id的设置请参考：http://blog.csdn.net/xzy2046/article/details/40654283
  */
 public abstract class LayoutState {
 
@@ -37,9 +39,9 @@ public abstract class LayoutState {
     private int mEnterAnimation;
     private int mExitAnimation;
     boolean mShown;
-    
+
     protected int mDefaultResID;
-    
+
     protected int mStateID;
 
     public LayoutState(Context context, View view, ViewGroup parent, int stateID) {
@@ -48,15 +50,16 @@ public abstract class LayoutState {
         mExitAnimation = android.R.anim.fade_out;
         mStateID = stateID;
         if (view == null) {
-//            view = LayoutInflater.from(mContext).inflate(getDefaultResID(), parent, true);
+            // view = LayoutInflater.from(mContext).inflate(getDefaultResID(),
+            // parent, true);
             view = LayoutInflater.from(mContext).inflate(getDefaultResID(), null);
             parent.addView(view);
         }
         mContentLayout = view;
         mContentLayout.setContentDescription(String.valueOf(stateID));
-//        mContentLayout.setVisibility(View.INVISIBLE);
+        // mContentLayout.setVisibility(View.INVISIBLE);
     }
-    
+
     public void setStateID(int stateID) {
         mStateID = stateID;
     }
@@ -121,6 +124,26 @@ public abstract class LayoutState {
     void clear() {
         mContentLayout = null;
         mShown = false;
+    }
+
+    private static final AtomicInteger sNextGeneratedId = new AtomicInteger(1);
+
+    /**
+     * 解决同ID的问题，但是。。。该方法耦合太太太高。。。
+     * @return
+     */
+    public static int generateViewId() {
+        for (;;) {
+            final int result = sNextGeneratedId.get();
+            // aapt-generated IDs have the high byte nonzero; clamp to the range
+            // under that.
+            int newValue = result + 1;
+            if (newValue > 0x00FFFFFF)
+                newValue = 1; // Roll over to 1, not 0.
+            if (sNextGeneratedId.compareAndSet(result, newValue)) {
+                return result;
+            }
+        }
     }
 
     public abstract int getDefaultResID();

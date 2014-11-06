@@ -13,7 +13,7 @@
         android:src="@drawable/ic_launcher" />
 
     <TextView
-        android:id="@+id/ltm_empty_hint"
+        android:id="@+id/state_empty_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -22,7 +22,7 @@
         android:text="没有数据" />
 
     <TextView
-        android:id="@+id/ltm_empty_subhint"
+        android:id="@+id/state_empty_subhint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -30,7 +30,7 @@
         android:text="请重新选择" />
 
     <Button
-        android:id="@+id/ltm_empty_btn"
+        android:id="@+id/state_empty_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

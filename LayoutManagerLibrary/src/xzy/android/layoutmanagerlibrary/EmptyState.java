@@ -42,7 +42,7 @@ public class EmptyState extends LayoutState {
     }
     
     private void init() {
-        mRefreshButton = (Button) mContentLayout.findViewById(R.id.ltm_empty_btn);
+        mRefreshButton = (Button) mContentLayout.findViewById(R.id.state_empty_btn);
         mRefreshButton.setOnClickListener(new View.OnClickListener() {
             
             @Override
@@ -56,7 +56,7 @@ public class EmptyState extends LayoutState {
 
     @Override
     public int getDefaultResID() {
-        return R.layout.ltm_emptydata;
+        return R.layout.state_empty_data;
     }
 
     public void setCallback(Callbacks cb) {

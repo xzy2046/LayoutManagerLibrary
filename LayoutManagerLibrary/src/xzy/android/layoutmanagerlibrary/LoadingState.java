@@ -34,7 +34,7 @@ public class LoadingState extends LayoutState {
 
     @Override
     public int getDefaultResID() {
-        return R.layout.ltm_loading;
+        return R.layout.state_loading;
     }
 
 }
