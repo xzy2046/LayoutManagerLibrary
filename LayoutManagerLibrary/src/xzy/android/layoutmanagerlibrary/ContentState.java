@@ -21,20 +21,20 @@ import android.view.ViewGroup;
 
 /**
  * @author zhengyangxu
- * @date Oct 26, 2014 4:15:25 PM
+ * @date Nov 4, 2014 5:51:36 PM
  * TODO
  *
  */
-public class LoadingState extends LayoutState {
+public class ContentState extends LayoutState {
 
-    public LoadingState(Context context, View view, ViewGroup parent, int stateID) {
+    public ContentState(Context context, View view, ViewGroup parent, int stateID) {
         super(context, view, parent, stateID);
         // TODO Auto-generated constructor stub
     }
 
     @Override
     public int getDefaultResID() {
-        return R.layout.ltm_loading;
+        return 0;
     }
 
 }

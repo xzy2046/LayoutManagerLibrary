@@ -18,23 +18,49 @@ package xzy.android.layoutmanagerlibrary;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * @author zhengyangxu
- * @date Oct 26, 2014 4:15:25 PM
+ * @date Nov 5, 2014 4:03:26 PM
  * TODO
  *
  */
-public class LoadingState extends LayoutState {
+public class EmptyState extends LayoutState {
 
-    public LoadingState(Context context, View view, ViewGroup parent, int stateID) {
+    public interface Callbacks {
+        public void onRefresh(View view);
+    }
+
+    private Callbacks mCallback;
+    
+    private Button mRefreshButton;
+    
+    public EmptyState(Context context, View view, ViewGroup parent, int stateID) {
         super(context, view, parent, stateID);
-        // TODO Auto-generated constructor stub
+        init();
+    }
+    
+    private void init() {
+        mRefreshButton = (Button) mContentLayout.findViewById(R.id.ltm_empty_btn);
+        mRefreshButton.setOnClickListener(new View.OnClickListener() {
+            
+            @Override
+            public void onClick(View v) {
+                if (mCallback != null) {
+                    mCallback.onRefresh(v);
+                }
+            }
+        });
     }
 
     @Override
     public int getDefaultResID() {
-        return R.layout.ltm_loading;
+        return R.layout.ltm_emptydata;
     }
 
+    public void setCallback(Callbacks cb) {
+        mCallback = cb;
+    }
+    
 }

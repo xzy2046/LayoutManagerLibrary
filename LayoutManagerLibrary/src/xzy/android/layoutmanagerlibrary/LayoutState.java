@@ -17,30 +17,45 @@
 package xzy.android.layoutmanagerlibrary;
 
 import android.content.Context;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 
 /**
  * @author zhengyangxu
  * @date Oct 25, 2014 5:08:43 PM TODO
  */
-public class LayoutState {
+public abstract class LayoutState {
 
-    private View mContentLayout;
-    private Context mContext;
+    protected View mContentLayout;
+    protected Context mContext;
     private int mEnterAnimation;
     private int mExitAnimation;
     boolean mShown;
+    
+    protected int mDefaultResID;
+    
+    protected int mStateID;
 
-    public LayoutState(Context context) {
-        this(context, null);
-    }
-
-    public LayoutState(Context context, View view) {
-        mContentLayout = view;
+    public LayoutState(Context context, View view, ViewGroup parent, int stateID) {
         mContext = context;
         mEnterAnimation = android.R.anim.fade_in;
         mExitAnimation = android.R.anim.fade_out;
+        mStateID = stateID;
+        if (view == null) {
+//            view = LayoutInflater.from(mContext).inflate(getDefaultResID(), parent, true);
+            view = LayoutInflater.from(mContext).inflate(getDefaultResID(), null);
+            parent.addView(view);
+        }
+        mContentLayout = view;
+        mContentLayout.setContentDescription(String.valueOf(stateID));
+//        mContentLayout.setVisibility(View.INVISIBLE);
+    }
+    
+    public void setStateID(int stateID) {
+        mStateID = stateID;
     }
 
     public void overridePendingTransition(int enterAnim, int exitAnim) {
@@ -71,6 +86,7 @@ public class LayoutState {
      * @param animate 是否动画
      */
     public void setLayoutShown(boolean shown, boolean animate) {
+        Log.i("xzy", "setLayoutShown " + shown + " # stateID " + mStateID);
         mShown = shown;
         if (mContentLayout == null) {
             throw new IllegalStateException("Content layout not yet created");
@@ -99,8 +115,10 @@ public class LayoutState {
      * recycle resources 必要的时候，例如Activity configuration changed
      * 回收Listener等。。。。。。。
      */
-    void unbind() {
-        ;
+    void clear() {
+        mContentLayout = null;
+        mShown = false;
     }
 
+    public abstract int getDefaultResID();
 }

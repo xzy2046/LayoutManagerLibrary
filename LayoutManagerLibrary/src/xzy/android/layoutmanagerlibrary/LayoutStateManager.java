@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package xzy.android.layoutmanagerlibrary;
 
 import java.util.ArrayList;
@@ -20,21 +21,57 @@ import java.util.List;
 
 /**
  * @author zhengyangxu
- * @date Oct 26, 2014 4:17:42 PM
- * 管理LayoutState,考虑onSaveInstance恢复状态。
- *
+ * @date Oct 26, 2014 4:17:42 PM 管理LayoutState,考虑onSaveInstance恢复状态。
+ * @deprecated
  */
-public abstract class LayoutStateManager implements LayoutStateHelper {
-    
+public abstract class LayoutStateManager {
+
     private List<LayoutState> mLayoutStates;
     
     public LayoutStateManager() {
-        mLayoutStates = new ArrayList<LayoutState>();
+        init();
     }
     
-    
-    
-    public void addLayoutState() {
+    private void init() {
+        mLayoutStates = new ArrayList<LayoutState>();
+    }
+
+    /**
+     * 
+     * @param state
+     * @return false : already contain this state
+     *         true : add state for this LayoutStateManager
+     */
+    public boolean addLayoutState(LayoutState state) {
+        boolean containState = false;
+
+        for (int i = 0; i < mLayoutStates.size(); i++) {
+//            if (mLayoutStates.get(i).getClass().getSimpleName()
+//                    .equals(state.getClass().getSimpleName())) {
+            if (mLayoutStates.get(i).mStateID == state.mStateID) {
+                containState = true;
+                break;
+            }
+        }
         
+        if (containState) {
+            return false;
+        } else {
+            mLayoutStates.add(state);
+            return true;
+        }
+    }
+
+    public void removeLayoutState(int stateID) {
+        for (int i = 0; i < mLayoutStates.size(); i++) {
+            if (mLayoutStates.get(i).mStateID == stateID) {
+                mLayoutStates.remove(i);
+                break;
+            }
+        }
+    }
+    
+    public void removeAllLayoutState() {
+        mLayoutStates.clear();
     }
 }
