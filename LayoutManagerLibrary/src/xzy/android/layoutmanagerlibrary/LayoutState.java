@@ -44,6 +44,9 @@ public abstract class LayoutState {
 
     protected int mStateID;
 
+    /**
+     * view : if null ,create use default layoutID;
+     */
     public LayoutState(Context context, View view, ViewGroup parent, int stateID) {
         mContext = context;
         mEnterAnimation = android.R.anim.fade_in;
